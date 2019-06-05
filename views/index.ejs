@@ -10,10 +10,16 @@
   <h1><%= title %></h1>
   <p>Welcome to <%= title %></p>
 
-  <% if(todos){ %>
-    <% todos.forEach(todo =>{ %>
+  <% if(todos.length){ %>
+    <% todos.forEach((todo, idx) =>{ %>
       <li><%= todo.value %> - <%= todo.completed ? "done" : "not done" %></li>
+      <form action="/<%= idx %>?_method=DELETE" method="POST">
+        <input type="submit" value="X">
+      </form>
     <% }) %>
+  <% } else { %>
+    <h1>there are no todos yet :)</h1>
+
   <% } %>
   <form action="/" method="POST">
     <input type="text" name=value>
